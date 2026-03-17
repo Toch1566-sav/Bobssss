@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Мебельный магазин</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <!-- СЕКЦИЯ HERO -->
+  <section class="hero">
+
+    <!-- HEADER -->
+    <header>
+      <div class="center">
+        <div class="header-inner">
+
+          <!-- Логотип -->
+          <div class="logo">
+            <img
+              src="images/логос.png"
+              alt="MebelShop логотип"
+            />
+            <span class="logo-name">MebelShop</span>
+          </div>
+
+          <!-- Навигация -->
+          <nav>
+            <a href="#">Главная</a>
+            <a href="#products">Каталог</a>
+            <a href="#footer">Контакты</a>
+          </nav>
+
+        </div>
+      </div>
+    </header>
+
+    <!-- Текст hero -->
+    <div class="hero-content">
+      <div class="center">
+        <div class="hero-text">
+          <h1>Уютная мебель для вашего дома</h1>
+          <p>Широкий выбор качественной мебели — от дивана до рабочего стола. Доставка по всей стране.</p>
+          <a href="#products" class="btn">Смотреть каталог</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- СЕКЦИЯ ТОВАРОВ -->
+  <section class="products" id="products">
+    <div class="center">
+      <h2>Наши товары</h2>
+
+      <div class="products-grid">
+
+        <!-- Товар 1 -->
+        <div class="product-card" onclick="openProduct(
+          'Кровать TATRAN',
+          '29 990',
+          'images/Кровать.png',
+          'Основание из полированной нержавеющей стали придаёт оригинальный парящий эффект. Размер: 160x200 см. Материал: металл, ткань. Гарантия: 2 года.'
+        )">
+          <img src="images/Кровать.png" alt="Кровать TATRAN"/>
+          <div class="product-info">
+            <h3>Кровать TATRAN</h3>
+            <p>Основание из полированной нержавеющей стали придаёт оригинальный парящий эффект.</p>
+            <span class="price">29 990 ₽</span>
+            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Кровать TATRAN', 29990)">Купить</button>
+          </div>
+        </div>
+
+        <!-- Товар 2 -->
+        <div class="product-card" onclick="openProduct(
+          'Кресло VILORA',
+          '12 490',
+          'images/Кресло VILORA.png',
+          'Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная на ощупь ткань. Размер: 70x80 см. Материал: ткань, дерево. Гарантия: 1 год.'
+        )">
+          <img src="images/Кресло VILORA.png" alt="Кресло VILORA"/>
+          <div class="product-info">
+            <h3>Кресло VILORA</h3>
+            <p>Мягкое и уютное, аккуратное и стильное. Упругие подушки сиденья и приятная на ощупь ткань.</p>
+            <span class="price">12 490 ₽</span>
+            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Кресло VILORA', 12490)">Купить</button>
+          </div>
+        </div>
+
+        <!-- Товар 3 -->
+        <div class="product-card" onclick="openProduct(
+          'Стол MENU',
+          '18 990',
+          'images/Стол.png',
+          'Для того чтобы трапезничать было приятно, необходим правильный обеденный стол. Размер: 120x80 см. Материал: дерево, металл. Гарантия: 2 года.'
+        )">
+          <img src="images/Стол.png" alt="Стол MENU"/>
+          <div class="product-info">
+            <h3>Стол MENU</h3>
+            <p>Для того чтобы трапезничать было приятно, необходим правильный обеденный стол.</p>
+            <span class="price">18 990 ₽</span>
+            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Стол MENU', 18990)">Купить</button>
+          </div>
+        </div>
+
+        <!-- Товар 4 -->
+        <div class="product-card" onclick="openProduct(
+          'Кресло ASKESTA',
+          '14 990',
+          'images/Кресло ASKETA.png',
+          'Высокоэластичный пенополиуретан в начинке кресла — надёжный и долговечный материал. Размер: 75x85 см. Материал: пенополиуретан, ткань. Гарантия: 1 год.'
+        )">
+          <img src="images/Кресло ASKETA.png" alt="Кресло ASKESTA"/>
+          <div class="product-info">
+            <h3>Кресло ASKESTA</h3>
+            <p>Высокоэластичный пенополиуретан в начинке кресла — надёжный и долговечный материал.</p>
+            <span class="price">14 990 ₽</span>
+            <button class="btn-buy" onclick="event.stopPropagation(); addToCart('Кресло ASKESTA', 14990)">Купить</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- МОДАЛЬНОЕ ОКНО КОРЗИНЫ -->
+  <div class="modal" id="modal">
+    <div class="modal-box">
+      <h3>Товар добавлен в корзину!</h3>
+      <p id="modal-text"></p>
+      <button class="btn" onclick="closeModal()">Закрыть</button>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ТОВАРА -->
+  <div class="modal" id="product-modal">
+    <div class="modal-box product-modal-box">
+      <button class="close-btn" onclick="closeProduct()">✕</button>
+      <img id="product-modal-img" src="" alt=""/>
+      <h3 id="product-modal-name"></h3>
+      <p id="product-modal-desc"></p>
+      <span class="price" id="product-modal-price"></span>
+      <button class="btn-buy" id="product-modal-buy">Купить</button>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer id="footer">
+    <div class="center">
+
+      <div class="footer-inner">
+
+        <div class="footer-col">
+          <h4>О магазине</h4>
+          <ul>
+            <li><a href="#">О нас</a></li>
+            <li><a href="#">Новости</a></li>
+            <li><a href="#">Вакансии</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Покупателям</h4>
+          <ul>
+            <li><a href="#">Доставка</a></li>
+            <li><a href="#">Оплата</a></li>
+            <li><a href="#">Возврат</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Контакты</h4>
+          <ul>
+            <li><a href="#">mebel@shop.ru</a></li>
+            <li><a href="#">+7 (800) 123-45-67</a></li>
+            <li><a href="#">г. Москва, ул. Мебельная, 5</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        © 2026 MebelShop. Все права защищены (Учеником Skypro).
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- Фоновая музыка -->
+  <audio id="bg-music" loop>
+    <source src="sound/Full.mp3" type="audio/mpeg"/>
+  </audio>
+
+  <!-- Кнопка музыки -->
+  <div class="music-btn" id="music-btn" onclick="toggleMusic()">
+    ♪ Музыка вкл
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    // ── Корзина ──
+    function addToCart(name, price) {
+      document.getElementById('modal-text').textContent =
+        name + ' — ' + price.toLocaleString('ru-RU') + ' ₽';
+      document.getElementById('modal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modal').style.display = 'none';
+    }
+
+    // ── Карточка товара ──
+    function openProduct(name, price, img, desc) {
+      document.getElementById('product-modal-img').src = img;
+      document.getElementById('product-modal-name').textContent = name;
+      document.getElementById('product-modal-desc').textContent = desc;
+      document.getElementById('product-modal-price').textContent = price + ' ₽';
+      document.getElementById('product-modal-buy').onclick = function () {
+        closeProduct();
+        addToCart(name, parseInt(price.replace(/\s/g, '')));
+      };
+      document.getElementById('product-modal').style.display = 'flex';
+    }
+
+    function closeProduct() {
+      document.getElementById('product-modal').style.display = 'none';
+    }
+
+    // ── Музыка ──
+    const audio = document.getElementById('bg-music');
+    const btn = document.getElementById('music-btn');
+
+    window.addEventListener('load', function () {
+      audio.volume = 0.3;
+      audio.play().catch(function () {
+        document.addEventListener('click', function () {
+          audio.play();
+        }, { once: true });
+      });
+    });
+
+    function toggleMusic() {
+      if (audio.paused) {
+        audio.play();
+        btn.textContent = '♪ Музыка вкл';
+        btn.classList.remove('muted');
+      } else {
+        audio.pause();
+        btn.textContent = '♪ Музыка выкл';
+        btn.classList.add('muted');
+      }
+    }
+  </script>
+
+</body>
+</html>
